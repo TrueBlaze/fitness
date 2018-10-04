@@ -1,0 +1,17 @@
+{% extends "feelfitness/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block header %}
+    <h4>SignUp for Free</h4>
+{% endblock header %}
+
+{% block content %}
+<form method="post" action="{% url 'users:signup' %}">
+    {% csrf_token %}
+    {{form.as_p}}
+
+      <button name="submit" class="btn btn-primary">Signup</button>
+      <input type="hidden" name="next" value="{% url 'feelfitness:index' %}"/>
+</form>
+{% endblock content %}

@@ -1,0 +1,26 @@
+
+{% extends "feelfitness/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block header %}
+    <h4>Login</h4>
+    {% endblock header %}
+</head>
+<body>
+{% block content %}
+<form method="post" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Login</button>
+    {% endbuttons %}
+    <input type="hidden" name="next" value="{% url 'feelfitness:index' %}"/>
+</form>
+</body>
+{% endblock content %}
+</html>
