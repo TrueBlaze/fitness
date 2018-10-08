@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'feelfitness',
     'users',
     'shop',
+    'cart',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -140,6 +143,8 @@ BOOTSTRAP4 = {
 }
 
 # my setting
+CART_SESSION_ID = 'cart'
+
 LOGIN_URL = '/users/login/'
 
 LOGOUT_REDIRECT_URL = '/'

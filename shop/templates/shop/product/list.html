@@ -3,7 +3,9 @@
 {% block title %}
     {% if category %}{{ category.name }} {% else %} Products {% endif %}
 {% endblock %}
+
 {% block content %}
+{% include 'shop/product/shopping-cart-processors.html' %}
    <div class="container-fluid">
       <div class="row" style="margin-top: 6%">
 
@@ -16,7 +18,7 @@
                         <div class="thumbnail">
                             <a href="{{ product.get_absolute_url }}">
                                 <img src="{% if product.image %} {{ product.image.url }} {% else %}
-                                {% static 'img/default.jpg' %}
+                                {% static 'img/default_image.jpg' %}
                                 {% endif %}" alt="..." style="height: 130px; width: auto">
                             </a>
                             <div class="caption">

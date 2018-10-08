@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'feelfitness/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+    {% if category %} {{ category.name }} {% else %} Products {% endif %}
+{% endblock title %}
+
+{% block content %}
+{% include 'shop/product/shopping-cart-processors.html' %}
+  <div class="container">
+      <div class="row" style="margin-top: 4%">
+          <div class="col-sm-8 blog-main">
+              <div class="blog-post">
+                  <div class="row">
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="col-md-8 text-right">
+                                  <img src="{% if product.image %} {{product.image.url}} {% else %}
+                                  {% static 'img/default_image.jpg' %} {% endif %}"
+                                       alt="..." style="height:170px; width: auto">
+                              </div>
+                              <div class="col-md-8" style="padding-left: auto">
+                                  <h5>{{ product.name }}</h5>
+                                  <h6><a href="{{ product.category.get_absolute_url}}">{{ product.category }}</a></h6>
+                                  <p class="text-muted">Ksh. {{ product.price }}</p>
+                                  <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                      {% csrf_token %}
+                                      {{ cart_product_form }}
+                                      <input type="submit" value="add to cart" class="btn btn-primary">
+                                  </form>
+                                  <p>{{ product.description|safe|linebreaksbr }}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div> <!--blog-post -->
+          </div> <!--blog-main -->
+      </div> <!--row -->
+  </div> <!--container -->
+
+{% endblock content %}
