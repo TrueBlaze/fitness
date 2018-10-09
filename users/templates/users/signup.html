@@ -3,15 +3,18 @@
 {% load static %}
 
 {% block header %}
-    <h4>SignUp for Free</h4>
+<div class="container">
+    <h5>Sign Up for Free</h5>
+</div>
 {% endblock header %}
-
 {% block content %}
-<form method="post" action="{% url 'users:signup' %}">
+<div class="container">
+    <form method="post" action="{% url 'users:signup' %}">
     {% csrf_token %}
     {{form.as_p}}
 
-      <button name="submit" class="btn btn-primary">Signup</button>
+      <button name="submit" class="btn btn-primary">Sign up</button>
       <input type="hidden" name="next" value="{% url 'feelfitness:index' %}"/>
 </form>
+</div>
 {% endblock content %}
